@@ -13,33 +13,30 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
     setLosses((losses) => losses + 1);
   }
 
+
+  const handleChoice = (choice) => {
+    setPlayerChoice(choice);
+
+    const randomNumber = Math.floor(Math.random() * choices.length);
+    const pcChoice = choices[randomNumber];
+    setPcChoice(pcChoice);
+
+    choose(choice, pcChoice);
+  };
+
   const choices = ["Rock", "Paper", "Scissor"];
 
-  useEffect(() => {
-    computerChoose();
-  }, [playerChoice]);
-
-  function computerChoose() {
-    const randomNumber = Math.floor(Math.random() * choices.length);
-    setPcChoice(choices[randomNumber]);
-  }
-  function choose(choice) {
-    let results;
-
-    setPlayerChoice(choice);
-    // computerChoose();
-    const randomNumber = Math.floor(Math.random() * choices.length);
-    setPcChoice(choices[randomNumber]);
-
-    if (pcChoice === choice) {
+  function choose(playerChoice, pcChoice) {
+let results;
+    if (pcChoice === playerChoice) {
       results = "DRAW";
-    } else if (choice === "Rock") {
+    } else if (playerChoice === "Rock") {
       if (pcChoice === "Paper") {
         results = "YOU LOSE!";
       } else {
         results = "YOU WIN!";
       }
-    } else if (choice === "Paper") {
+    } else if (playerChoice === "Paper") {
       if (pcChoice === "Scissor") {
         results = "YOU LOSE!";
       } else {
@@ -52,18 +49,12 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
         results = "YOU WIN!";
       }
     }
-    console.log("you choose:" + choice);
+    results === "YOU WIN!" ? Win() : results === "YOU LOSE!" ? Lose() : "DRAW"
+    setResult(results)
+    console.log("you choose: " + playerChoice);
     console.log("pc choose: " + pcChoice);
-    console.log("results: " + results);
-    console.log("result:" + result)
-    results === "YOU WIN!" ? Win() : results === "YOU LOSE!" ? Lose() : null;
-    setResult(results);
+    console.log("result:" + result);
   }
-
-  useEffect(() => {
-    setResult((result) => result);
-    console.log("useEffect result is: " + result)
-  }, [result]);
 
   return (
     <main className="flex flex-col justify-between items-center bg-teal-300 h-[calc(100vh-64px)]">
@@ -93,10 +84,10 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
       <div className="flex items-center flex-col w-[1000px] overflow-hidden bg-teal-500 rounded-t-[50%] pt-11 -bottom-24 ">
         <h1 className="text-3xl">CHOOSE YOUR HAND</h1>
         <div className="overflow-hidden h-[250px]">
-          <ChoiceButton onClick={() => choose("Rock")} href="/Lrock.png" />
-          <ChoiceButton onClick={() => choose("Paper")} href="/Lpaper.png" />
+          <ChoiceButton onClick={() => handleChoice("Rock")} href="/Lrock.png" />
+          <ChoiceButton onClick={() => handleChoice("Paper")} href="/Lpaper.png" />
           <ChoiceButton
-            onClick={() => choose("Scissor")}
+            onClick={() => handleChoice("Scissor")}
             href="/Lscissor.png"
           />
         </div>

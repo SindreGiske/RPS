@@ -5,7 +5,7 @@ export const Header = () => {
     
 
     return (
-        <section className="w-full h-16 bg-teal-600">
+        <section className="flex items-center w-full h-16 p-4 text-3xl bg-teal-600">
             <Link to="/">RESTART</Link>
         </section>
     )

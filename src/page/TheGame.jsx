@@ -60,15 +60,17 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
       <section>
         {/* <button onClick={() => Win()}>+1</button>
           <button onClick={() => Lose()}>-1</button>
-          <button onClick={() => computerChoose()}>check computer choice</button> */}
-        <h1>{wins}/{losses}</h1>
-        
-        {/* <p>{playerChoice}</p>
+          <button onClick={() => computerChoose()}>check computer choice</button>
+        <p>{playerChoice}</p>
         <p>{pcChoice}</p> */}
+        <h1>
+          {wins}/{losses}
+        </h1>
+
         <p>{result}</p>
         <section className="flex flex-row items-center justify-between w-screen translate-y-1/2 h-72">
           <div className="flex flex-row w-1/3">
-            <img src="/head.png" className=" translate-x-44 z-10 h-[500px]"/>
+            <img src="/head.png" className=" translate-x-44 z-10 h-[500px]" />
             <img
               className="rotate-45 w-96"
               src={
@@ -83,7 +85,7 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
             />
           </div>
           <div className="flex flex-row-reverse w-1/3 h-96">
-              <img className="z-10 h-96 -translate-x-28" src="/Shrek.png" />
+            <img className="z-10 h-96 -translate-x-28" src="/Shrek.png" />
             <img
               className="w-96 filter hue-rotate-[50deg] contrast-[200%] -rotate-45"
               src={
@@ -96,8 +98,6 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
             />
           </div>
         </section>
-
-        
       </section>
       <div className="flex items-center flex-col w-[1000px] overflow-hidden bg-teal-500 rounded-t-[50%] pt-11 -bottom-24 ">
         <h1 className="text-3xl">CHOOSE YOUR HAND</h1>

@@ -68,7 +68,7 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
         <p>{result}</p>
         <section className="flex flex-row items-center justify-between w-screen h-1/4">
           <div className="flex flex-row w-1/3">
-            <img src="/public/head.png" className=" translate-x-44 z-10 h-[500px]"/>
+            <img src="/head.png" className=" translate-x-44 z-10 h-[500px]"/>
             <img
               className="rotate-45 w-96"
               src={
@@ -83,7 +83,7 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
             />
           </div>
           <div className="flex flex-row-reverse w-1/3 ">
-              <img className="z-10 -translate-x-28" src="/public/Shrek.png" />
+              <img className="z-10 -translate-x-28" src="/Shrek.png" />
             <img
               className="w-96 filter hue-rotate-[50deg] contrast-[200%] -rotate-45"
               src={

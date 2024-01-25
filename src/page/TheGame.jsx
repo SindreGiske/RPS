@@ -63,11 +63,12 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
           <button onClick={() => computerChoose()}>check computer choice</button>
         <p>{playerChoice}</p>
         <p>{pcChoice}</p> */}
+        <div className="flex flex-col items-center text-6xl left-1/2">
         <h1>
-          {wins}/{losses}
+          {wins} / {losses}
         </h1>
-
         <p>{result}</p>
+        </div>
         <section className="flex flex-row items-center justify-between w-screen translate-y-1/2 h-72">
           <div className="flex flex-row w-1/3">
             <img src="/head.png" className=" translate-x-44 z-10 h-[500px]" />

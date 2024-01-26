@@ -25,13 +25,12 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
     
     pcChoice === lastChoice ? setPcChoice(choices[randomNumber]):
     WinOrLose(choice, pcChoice);
-    
+    setLastChoice(pcChoice)
     
     setAnimating(true);
     setTimeout(() => {
       setAnimating(false);
-      setLastChoice(pcChoice)
-    }, 900);
+    }, 1000);
   };
   
   const choices = ["Rock", "Paper", "Scissor"];

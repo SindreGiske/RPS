@@ -4,6 +4,7 @@ import { useState } from "react";
 export const TheGame = ({ setWins, wins, setLosses, losses }) => {
   const [playerChoice, setPlayerChoice] = useState("");
   const [pcChoice, setPcChoice] = useState("");
+  const [lastChoice, setLastChoice] = useState("");
   const [result, setResult] = useState("");
   const [animating, setAnimating] = useState(false);
 
@@ -21,17 +22,20 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
     const randomNumber = Math.floor(Math.random() * choices.length);
     const pcChoice = choices[randomNumber];
     setPcChoice(pcChoice);
-
+    
+    pcChoice === lastChoice ? setPcChoice(choices[randomNumber]):
     WinOrLose(choice, pcChoice);
-
+    
+    
     setAnimating(true);
     setTimeout(() => {
       setAnimating(false);
+      setLastChoice(pcChoice)
     }, 900);
   };
-
+  
   const choices = ["Rock", "Paper", "Scissor"];
-
+  
   function WinOrLose(playerChoice, pcChoice) {
     let results;
     if (pcChoice === playerChoice) {

@@ -5,6 +5,8 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
   const [playerChoice, setPlayerChoice] = useState("");
   const [pcChoice, setPcChoice] = useState("");
   const [result, setResult] = useState("");
+  const [animating, setAnimating] = useState(false);
+
   function Win() {
     setWins((wins) => wins + 1);
   }
@@ -20,12 +22,17 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
     const pcChoice = choices[randomNumber];
     setPcChoice(pcChoice);
 
-    choose(choice, pcChoice);
+    WinOrLose(choice, pcChoice);
+
+    setAnimating(true);
+    setTimeout(() => {
+      setAnimating(false);
+    }, 900);
   };
 
   const choices = ["Rock", "Paper", "Scissor"];
 
-  function choose(playerChoice, pcChoice) {
+  function WinOrLose(playerChoice, pcChoice) {
     let results;
     if (pcChoice === playerChoice) {
       results = "DRAW";
@@ -56,7 +63,7 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
   }
 
   return (
-    <main className="flex flex-col justify-between items-center bg-teal-300 h-[calc(100vh-64px)]">
+    <main className="flex flex-col justify-between items-center bg-teal-300 h-[calc(100vh-64px)] overflow-hidden">
       <section>
         {/* <button onClick={() => Win()}>+1</button>
           <button onClick={() => Lose()}>-1</button>
@@ -64,16 +71,16 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
         <p>{playerChoice}</p>
         <p>{pcChoice}</p> */}
         <div className="flex flex-col items-center text-6xl left-1/2">
-        <h1>
-          {wins} / {losses}
-        </h1>
-        <p>{result}</p>
+          <h1>
+            {wins} / {losses}
+          </h1>
+          <p className="h-[60px]">{animating ? "" : result}</p>
         </div>
         <section className="flex flex-row items-center justify-between w-screen translate-y-1/2 h-72">
           <div className="flex flex-row w-1/3">
             <img src="/head.png" className=" translate-x-44 z-10 h-[500px]" />
             <img
-              className="rotate-45 w-96"
+              className={`rotate-45 w-96 ${animating ? "animate-LShoot" : ""}`}
               src={
                 playerChoice === "Rock"
                   ? "/Lrock.png"
@@ -88,13 +95,17 @@ export const TheGame = ({ setWins, wins, setLosses, losses }) => {
           <div className="flex flex-row-reverse w-1/3 h-96">
             <img className="z-10 h-96 -translate-x-28" src="/Shrek.png" />
             <img
-              className="w-96 filter hue-rotate-[50deg] contrast-[200%] -rotate-45"
+              className={`-rotate-45 w-96 filter hue-rotate-[50deg] contrast-[200%] ${
+                animating ? "animate-RShoot" : ""
+              }`}
               src={
                 pcChoice === "Rock"
                   ? "/Rrock.png"
                   : pcChoice === "Paper"
                   ? "/Rpaper.png"
-                  : "/Rscissor.png"
+                  : pcChoice === "Scissor"
+                  ? "/Rscissor.png"
+                  : null
               }
             />
           </div>
